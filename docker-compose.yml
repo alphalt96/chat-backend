@@ -1,0 +1,44 @@
+version: "3"
+services:
+  app:
+    image: node:13
+    volumes:
+      - .:/usr/app/
+    working_dir: /usr/app/
+    env_file:
+     - .env
+    ports:
+      - "4000:4000"
+    depends_on:
+      - mongo
+    command: npm start
+    networks:
+      - chatapp
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: ${MONGO_DB}
+    ports:
+      - ${MONGO_PORT}:27017
+    networks:
+      - chatapp
+    volumes:
+      - ./data/mongodb:/data/db
+      - ./init/mongodb/:/docker-entrypoint-initdb.d/
+  
+  portainer:
+    image: portainer/portainer
+    container_name: app_portainer
+    networks:
+      - chatapp
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./data/portainer-data:/data
+    ports:
+      - '10000:9000'
+
+networks:
+    chatapp:

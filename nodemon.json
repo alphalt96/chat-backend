@@ -1,0 +1,12 @@
+{
+  "verbose": true,
+  "ignore": ["*.test.js"],
+  "delay": "0",
+  "execMap": {
+    "js": "node --harmony"
+  },
+  "watch": [
+    "src"
+  ],
+  "ext": "js, json"
+}
