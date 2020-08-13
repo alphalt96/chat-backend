@@ -1,14 +1,15 @@
 import moogoose from 'mongoose'
 
-const userSchema = moogoose.Schema({
+const UserSchema = moogoose.Schema({
   email: String,
   username: String,
   password: String,
   birthday: String,
   socialLink: String,
-  imgUrl: String
+  imgUrl: String,
+  connId: String
 })
 
-const userModel = moogoose.model('User', userSchema)
+const UserModel = moogoose.model('User', UserSchema)
 
-export default userModel
+export default UserModel

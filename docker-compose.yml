@@ -9,9 +9,10 @@ services:
      - .env
     ports:
       - "4000:4000"
+      - "1234:1234"
     depends_on:
       - mongo
-    command: npm start
+    command: npm run start:debug
     networks:
       - chatapp
   mongo:

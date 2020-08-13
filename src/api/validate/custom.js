@@ -1,5 +1,5 @@
 import validate from 'validate.js'
-import logger from '../../shared/logger'
+import { apiLogger as logger } from '../../shared/logger'
 
 validate.validators.isExistInDB = async (value, options, key, attributes) => {
   let result

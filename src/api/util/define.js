@@ -1,6 +1,6 @@
 import path from 'path'
 
-exports.statusName = Object.freeze({
+export const statusName = Object.freeze({
   ok: 'OK',
   badRequest: 'BadRequest',
   notfound: 'NotFound',

@@ -1,4 +1,9 @@
-import { addNewUser, verifyLogin, getUserInfo } from '../handler/user'
+import {
+  addNewUser,
+  verifyLogin,
+  getUserInfo,
+  searchFriendChat
+} from '../handler/user'
 import {
   addNewUser as addNewUserValidate,
   verifyLogin as verifyLoginValidate
@@ -25,5 +30,13 @@ export default [
       authenticateMiddleware
     ],
     handler: getUserInfo
+  },
+  {
+    method: 'post',
+    path: '/users/searchfriendchat',
+    middlewares: [
+      authenticateMiddleware
+    ],
+    handler: searchFriendChat
   }
 ]

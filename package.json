@@ -5,20 +5,24 @@
   "main": "index.js",
   "scripts": {
     "build": "babel src -d dist",
-    "start": "nodemon --exec babel-node src",
+    "start:debug": "npm run start:development -- --inspect=1234",
+    "start:development": "nodemon --exec babel-node ./src/index.js",
     "migrate": "npx migrate-mongo"
   },
+  "proxy": "http://localhost:4000",
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@babel/node": "^7.8.7",
     "bluebird": "^3.7.2",
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "debug": "^4.1.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "log4js": "^6.2.0",
+    "md5": "^2.2.1",
     "migrate-mongo": "^7.1.0",
     "mongodb": "^3.5.6",
     "mongoose": "^5.9.9",
@@ -29,6 +33,8 @@
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
-    "@babel/preset-env": "^7.9.5"
+    "@babel/node": "^7.8.7",
+    "@babel/preset-env": "^7.9.5",
+    "babel-preset-latest": "^6.24.1"
   }
 }

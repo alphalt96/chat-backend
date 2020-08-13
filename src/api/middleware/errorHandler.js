@@ -1,4 +1,4 @@
-import logger from '../../shared/logger'
+import { apiLogger as logger } from '../../shared/logger'
 import { statusName } from '../util/define'
 
 logger.addContext('type', 'API')

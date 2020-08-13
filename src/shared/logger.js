@@ -1,14 +1,21 @@
-import log4js from 'log4js'
+import log4js, { getLogger } from 'log4js'
 
 log4js.configure({
   appenders: {
-    default: {
+    api: {
       type: 'stdout',
       layout: {
         type: 'pattern',
         pattern: '%[[%d{yyyy-MM-dd hh.mm.ss}]%]\t%[[%p]%] %X{type}\t%m\n'
       }
     },
+    socket: {
+      type: 'stdout',
+      layout: {
+        type: 'pattern',
+        pattern: '%[[%d{yyyy-MM-dd hh.mm.ss}]%]\t%[[%p]%] %X{type}\t%m\n'
+      }
+    }
     // multiFile: {
     //   type: 'multiFile',
     //   base: 'logs/',
@@ -17,12 +24,20 @@ log4js.configure({
   },
   categories: {
     default: {
-      appenders: ['default'],
+      appenders: ['api'],
+      level: 'debug'
+    },
+    socket: {
+      appenders: ['socket'],
       level: 'debug'
     }
   }
 })
 
-let logger = log4js.getLogger()
+const apiLogger = getLogger('api'),
+  socketLogger = getLogger('socket')
 
-export default logger
+export {
+  apiLogger,
+  socketLogger
+}

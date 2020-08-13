@@ -18,6 +18,7 @@ const verfifyAuth = async (req, res, next) => {
     const payload = jwt.verify(token, publicKey)
     const queryResult = await User.findById(payload._id).select('_id')
     if (!queryResult) next(new ApiError(statusName.unauthorization))
+    req.auth = queryResult
     next()
   } catch (e) {
     switch (e.constructor) {
